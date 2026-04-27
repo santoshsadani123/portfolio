@@ -1,0 +1,32 @@
+name: Deploy to DreamHost
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to DreamHost via SFTP
+        uses: DrKLO/sftp-deploy@v2
+        with:
+          host: ${{ secrets.DREAMHOST_HOST }}
+          username: ${{ secrets.DREAMHOST_USER }}
+          password: ${{ secrets.DREAMHOST_PASSWORD }}
+          localDir: "/"
+          remoteDir: "/home/${{ secrets.DREAMHOST_USER }}/santoshsadani.com"
+          delete: true
+          exclude: |
+            .git*/
+            .github/
+            .gitignore
+            README.md
+            .env
+            *.pdf
+            setup-secrets.sh
