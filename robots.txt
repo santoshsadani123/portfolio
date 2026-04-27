@@ -1,0 +1,15 @@
+# robots.txt for Santoshsadani.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.santoshsadani.com/sitemap.xml
+
+# Crawl-delay for polite crawlers
+Crawl-delay: 10
+
+# Block common bot traps and sensitive areas
+Disallow: /.env
+Disallow: /node_modules/
+Disallow: /.git/
